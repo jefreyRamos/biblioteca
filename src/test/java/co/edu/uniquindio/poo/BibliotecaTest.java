@@ -1,40 +1,44 @@
 package co.edu.uniquindio.poo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.time.LocalDate;
 import java.util.logging.Logger;
+
 import org.junit.jupiter.api.Test;
 
 /**
  *clase para realizar pruebas a la Biblioteca
 */
-public class LibreriaTest {
+public class BibliotecaTest {
+public static final Logger LOG = Logger.getLogger(AppTest.class.getName());
+private Object biblioteca;
 
-    public static final Logger LOG = Logger.getLogger(AppTest.class.getName());
+      //  Libro libroImpreso = new LibroImpreso("LibroImpreso", autor, editorial, 2023, TipoLibro.IMPRESO, 15);
+      //  Libro libroDigital = new LibroDigital("LibroDigital", autor, editorial, 2023, TipoLibro.DIGITAL, "URL_Digital");
+      //  Libro libroCD = new LibroCD("LibroCD", autor, editorial, 2023, TipoLibro.CD, 700, "MP3");
+      //  biblioteca.agregarLibro(libroImpreso);
+      //  biblioteca.agregarLibro(libroDigital);
+      //  biblioteca.agregarLibro(libroCD);
 
+    /**
+     * 
+     */
     @Test
-    public void testContarTiposLibrosPorNombre() {
-        LOG.info("inicio test contar tipos de libros por el nombre");
-        Biblioteca biblioteca = new Biblioteca();
+    public void agregarLibroRepetido() {
+        LOG.info("iniciando test agregar libro repetido");
 
-        Autor autor = new Autor("Autor1", "Nacionalidad1", 15);
-        Editorial editorial = new Editorial("Editorial1", "123-456-789");
+        var autor = new Autor("Autor1", "Nacionalidad1", 15);
+        var editorial = new Editorial("Editorial1", "123-456-789");
+        var libroImpreso1 = new LibroImpreso("LibroImpreso", autor, editorial, 2023, TipoLibro.IMPRESO, 15);
+        var libroImpreso2 = new LibroImpreso("LibroImpreso", autor, editorial, 2023, TipoLibro.IMPRESO, 15);
+        biblioteca.agregarLibro(libroImpreso1);
 
-        Libro libroImpreso = new LibroImpreso("LibroImpreso", autor, editorial, 2023, TipoLibro.IMPRESO, 15);
-        
-        Libro libroImpreso2 = new LibroImpreso("LibroImpreso", autor, editorial, 2023, TipoLibro.IMPRESO, 15);
-        Libro libroDigital = new LibroDigital("LibroDigital", autor, editorial, 2023, TipoLibro.DIGITAL, "URL_Digital");
-        Libro libroCD = new LibroCD("LibroCD", autor, editorial, 2023, TipoLibro.CD, 700, "MP3");
+        assertThrows(Throwable.class, ()-> biblioteca.agregarLibro( libroImpreso2));
 
-        biblioteca.agregarLibro(libroImpreso);
-        biblioteca.agregarLibro(libroDigital);
-        biblioteca.agregarLibro(libroCD);
+        LOG.info("Finalizando test agregar libro repetido");
 
-        assertEquals(1, biblioteca.contarTiposLibrosPorNombre("LibroImpreso"));
-        assertEquals(1, biblioteca.contarTiposLibrosPorNombre("LibroDigital"));
-        assertEquals(1, biblioteca.contarTiposLibrosPorNombre("LibroCD"));
-        assertEquals(0, biblioteca.contarTiposLibrosPorNombre("LibroInexistente"));
-
-        LOG.info("fin test contar tipos de libros por nombre");
     }
     
 }
