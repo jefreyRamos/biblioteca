@@ -7,7 +7,7 @@ public class Libro {
     private final int año;
     private final TipoLibro tipoLibro;
 
-    public Libro(String nombre, Autor autor, Editorial editorial, int año, TipoLibro tipoLibro, boolean tieneVersionCD) {
+    public Libro(String nombre, Autor autor, Editorial editorial, int año, TipoLibro tipoLibro) {
         this.nombre = nombre;
         this.autor = autor;
         this.editorial = editorial;
