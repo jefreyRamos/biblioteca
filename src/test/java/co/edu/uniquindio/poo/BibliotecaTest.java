@@ -113,4 +113,5 @@ public static final Logger LOG = Logger.getLogger(AppTest.class.getName());
 
         LOG.info("Finalizando el test buscar un libros y mostrar cuantos tipos tiene");
     }
+    
 }
