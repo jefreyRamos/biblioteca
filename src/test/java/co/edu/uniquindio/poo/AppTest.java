@@ -1,7 +1,5 @@
 package co.edu.uniquindio.poo;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
 /**
@@ -16,5 +14,8 @@ public class AppTest
     public void shouldAnswerWithTrue()
     {
         assertTrue( true );
+    }
+
+    private void assertTrue(boolean b) {
     }
 }
