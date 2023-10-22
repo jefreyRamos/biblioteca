@@ -3,8 +3,6 @@ package co.edu.uniquindio.poo;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public record Biblioteca(String nombre, Collection<Libro> libros) {
@@ -14,18 +12,7 @@ public record Biblioteca(String nombre, Collection<Libro> libros) {
     }
 
     public void agregarLibro(Libro libro){
-        validarLibroRepetido(libro);
         libros.add(libro);
-    }
-
-    private void validarLibroRepetido(Libro libro) {
-        boolean existeLibro = buscarLibro(libro).isPresent();
-        assert !existeLibro : "ya existe un libro con el mismo nombre";
-    }
-
-    public Optional<Libro> buscarLibro(Libro libro){
-        Predicate<Libro> nombreIgual = j->j.getNombre().equals(libro.getNombre());
-        return libros.stream().filter(nombreIgual).findAny();
     }
 
     public Collection<Libro> getLibros() {
@@ -45,5 +32,19 @@ public record Biblioteca(String nombre, Collection<Libro> libros) {
                 .collect(Collectors.toList());
     }
 
+    public List<Libro> buscarLibrosDigitalesConVersionImpresa() {
+        return libros.stream()
+                .filter(libro -> libro instanceof LibroDigital) // Filtrar libros digitales
+                .filter(libroDigital ->
+                        libros.stream()
+                                .anyMatch(libroImpreso -> libroImpreso instanceof LibroImpreso &&
+                                        libroImpreso.getNombre().equals(libroDigital.getNombre())))
+                .collect(Collectors.toList());
+    }
 
+    public int contarTiposDeLibroPorNombre(String nombreLibro) {
+        return (int) libros.stream()
+                .filter(libro -> libro.getNombre().equals(nombreLibro))
+                .count();
+    }
 }

@@ -6,7 +6,7 @@ public class LibroCD extends Libro {
 
     public LibroCD(String nombre, Autor autor, Editorial editorial, int año, TipoLibro tipoLibro,
             boolean tieneVersionCD, int tamañoMbCD, String formatoCD) {
-        super(nombre, autor, editorial, año, tipoLibro, tieneVersionCD);
+        super(nombre, autor, editorial, año, tipoLibro);
         this.tamañoMbCD = tamañoMbCD;
         this.formatoCD = formatoCD;
     }
