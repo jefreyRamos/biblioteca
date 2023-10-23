@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Test;
-/**
- *clase para realizar pruebas a la Biblioteca
-*/
+
 public class BibliotecaTest {
 public static final Logger LOG = Logger.getLogger(AppTest.class.getName());
 
